@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Api [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\src\\Api.csproj"
+        }
+    ]
+}
