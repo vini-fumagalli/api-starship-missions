@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Api.Migrations
 {
     /// <inheritdoc />
-    public partial class StarshipMigration : Migration
+    public partial class StarshipMissionsMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,8 +22,7 @@ namespace Api.Migrations
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Duration = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Crew = table.Column<int>(type: "int", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

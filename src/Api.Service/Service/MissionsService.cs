@@ -13,6 +13,12 @@ public class MissionsService : IMissionsService
     {
         _repository = repository;
     }
+
+    public Task<ResponseEntity> CreateMission(MissionsEnitity mission)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<ResponseEntity> GetMissions()
     {
         var starshipList = await _repository.GetStarships();
@@ -32,5 +38,14 @@ public class MissionsService : IMissionsService
         };
     }
 
+    public async Task<ResponseEntity> GetMissionsByStarship(string starshipName)
+    {
+        var response = await _repository.GetMissionsByStarship(starshipName);
 
+        return new ResponseEntity
+        {
+            Success = true,
+            Response = response 
+        };
+    }
 }

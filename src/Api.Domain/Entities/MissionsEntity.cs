@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Domain.Entities;
 
-public class MissionsEnitity : BaseEntity
+public class MissionsEnitity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,4 +13,5 @@ public class MissionsEnitity : BaseEntity
     public string? Date { get; set; }
     public string? Duration { get; set; }
     public int? Crew { get; set; }
+    public DateTime? CreatedAt { get; set; }
 }

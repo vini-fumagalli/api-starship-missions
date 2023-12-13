@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Api.Domain.Entities;
 
-public class StarshipEntity : BaseEntity
+public class StarshipEntity
 {
     [Key]
     [JsonPropertyName("name")]
@@ -44,6 +44,8 @@ public class StarshipEntity : BaseEntity
 
     [JsonPropertyName("starship_class")]
     public string? Class { get; set; }
+    public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
 
 }

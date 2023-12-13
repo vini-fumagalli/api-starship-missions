@@ -23,39 +23,40 @@ public class StarshipService : IStarshipService
     }
     public async Task<ResponseEntity> Create(List<string> starshipModels)
     {
-        var starshipList = new List<StarshipEntity>();
-
-        foreach (var model in starshipModels)
+        try
         {
-            if (model != null)
-            {
-                string apiUrl = "https://swapi.dev/api/starships/?search=" + model;
-                HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync(apiUrl);
+            var starshipList = new List<StarshipEntity>();
 
-                if (httpResponseMessage.IsSuccessStatusCode)
+            foreach (var model in starshipModels)
+            {
+                if (model != null)
                 {
-                    var jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                    var starship = JsonSerializer.Deserialize<StarshipEntity>(jsonResponse)!;
-                    starshipList.Add(starship);
+                    string apiUrl = "https://swapi.dev/api/starships/?search=" + model;
+                    HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync(apiUrl);
+
+                    if (httpResponseMessage.IsSuccessStatusCode)
+                    {
+                        var jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
+                        var starship = JsonSerializer.Deserialize<StarshipEntity>(jsonResponse)!;
+                        starship.CreatedAt = DateTime.UtcNow.ToLocalTime();
+
+                        starshipList.Add(starship);
+                    }
                 }
             }
-        }
-
-        if (starshipList.Count > 0)
-        {
             var response = await _repository.CreateStarship(starshipList);
+            var formattedResponse = _mapper.Map<List<StarshipDtoResult>>(response);
+            
             return new ResponseEntity
             {
-                Success = true,
-                Response = response
+                Success = formattedResponse.Any(),
+                Response = formattedResponse
             };
         }
-
-        return new ResponseEntity
+        catch(Exception ex)
         {
-            Success = false,
-            Response = null
-        };
+            throw new Exception("ERRO AO CRIAR ESPAÇONAVES => ", ex);
+        }
 
     }
 
@@ -110,7 +111,9 @@ public class StarshipService : IStarshipService
     {
 
         var starshipToUpdate = _mapper.Map<StarshipEntity>(starship);
+
         starshipToUpdate.Name = name;
+        starshipToUpdate.UpdatedAt = DateTime.UtcNow.ToLocalTime();
 
         var starshipUpdated = await _repository.UpdateStarship(starshipToUpdate);
         var response = _mapper.Map<StarshipDtoResult>(starshipUpdated);

@@ -51,9 +51,6 @@ namespace Api.Migrations
                     b.Property<string>("StarshipName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.ToTable("MISSIONS_STARSHIP");
@@ -62,46 +59,59 @@ namespace Api.Migrations
             modelBuilder.Entity("Api.Domain.Entities.StarshipEntity", b =>
                 {
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name");
 
                     b.Property<string>("CargoCapacity")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "cargo_capacity");
 
                     b.Property<string>("Class")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "starship_class");
 
                     b.Property<string>("Consumables")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "consumables");
 
                     b.Property<string>("CostInCredidts")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "cost_in_credits");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Crew")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "crew");
 
                     b.Property<string>("HyperdriveRating")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "hyperdrive_rating");
 
                     b.Property<string>("Length")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "length");
 
                     b.Property<string>("Manufacturer")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "manufacturer");
 
                     b.Property<string>("MaxAtmospheringSpeed")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "max_atmosphering_speed");
 
                     b.Property<string>("Mglt")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "MGLT");
 
                     b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "model");
 
                     b.Property<string>("Passengers")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "passengers");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
