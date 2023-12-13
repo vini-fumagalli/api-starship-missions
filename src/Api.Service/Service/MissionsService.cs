@@ -15,28 +15,19 @@ public class MissionsService : IMissionsService
     }
     public async Task<ResponseEntity> GetMissions()
     {
-        var starshipList = await _repository.GetStarships(); 
+        var starshipList = await _repository.GetStarships();
         var starshipMissionsList = new List<StarshipMissionsDto>();
 
-        foreach(var starship in starshipList)
+        foreach (var starship in starshipList)
         {
             var missionsByStarship = await _repository.GetMissionsByStarship(starship.Name!);
 
             starshipMissionsList.Add(missionsByStarship);
         }
 
-        if(starshipMissionsList.Count == 0)
-        {
-            return new ResponseEntity
-            {
-                Success = false,
-                Response = starshipMissionsList
-            };    
-        }
-        
         return new ResponseEntity
         {
-            Success = true,
+            Success = starshipMissionsList.Any(),
             Response = starshipMissionsList
         };
     }
