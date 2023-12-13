@@ -19,18 +19,20 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
         _dbMissions = _context.Set<MissionsEnitity>();
     }
 
-    public async Task<StarshipEntity?> CreateStarship(StarshipEntity starship)
+    public async Task<List<StarshipEntity>> CreateStarship(List<StarshipEntity> starships)
     {
         try
         {
-            var exists = await _dbStarship.AnyAsync(s => s.Name!.Equals(starship.Name));
-            if(!exists)
+            foreach(var starship in starships)
             {
-                await _dbStarship.AddAsync(starship);
-                await _context.SaveChangesAsync();
-                return starship;
+                var exists = await _dbStarship.AnyAsync(s => s.Name!.Equals(starship.Name));
+                if(!exists)
+                {
+                    await _dbStarship.AddAsync(starship);
+                    await _context.SaveChangesAsync();
+                }
             }
-            return null;
+            return starships;
         }
         catch(Exception ex)
         {

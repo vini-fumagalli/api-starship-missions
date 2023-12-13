@@ -11,7 +11,7 @@ public interface IStarshipAndMissionsRepository
     Task<bool> DeleteStarship(string name);
     Task<StarshipEntity?> GetStarshipByModel(string model);
     Task<StarshipEntity?> GetStarshipByManufacturer(string manufacturer);
-    Task<StarshipEntity?> CreateStarship(StarshipEntity starship);
+    Task<List<StarshipEntity>> CreateStarship(List<StarshipEntity> starships);
     Task<StarshipMissionsDto> GetMissionsByStarship(string starshipName);
     Task<MissionsEnitity> CreateMission(MissionsEnitity mission);
 
