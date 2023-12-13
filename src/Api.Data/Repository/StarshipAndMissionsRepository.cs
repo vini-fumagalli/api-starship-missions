@@ -29,9 +29,9 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
                 if(!exists)
                 {
                     await _dbStarship.AddAsync(starship);
-                    await _context.SaveChangesAsync();
                 }
             }
+            await _context.SaveChangesAsync();
             return starships;
         }
         catch(Exception ex)
