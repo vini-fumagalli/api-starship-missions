@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen(s =>
         {
             Version = "v1",
             Title = "Menu de Missões e Espaçonaves",
-            Description = "=> Api de cadastro de Espaçonaves e Missões construída com arquitetura DDD que consome outra Api (SwapiDev): " + 
+            Description = "=> Api de cadastro de Espaçonaves e Missões construída com arquitetura DDD que consome outra Api (SwapiDev): " +
             "https://swapi.dev/ \n\n => Banco de Dados feito através de migrações pelo EntityFramework",
             TermsOfService = new Uri("http://www.linkedin.com/in/vini-fumagalli"),
             Contact = new OpenApiContact
@@ -40,7 +40,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(s =>
+    {
+        s.SwaggerEndpoint("/swagger/v1/swagger.json", "Api Starships and Missions");
+    });
 }
 
 app.UseHttpsRedirection();
