@@ -19,8 +19,8 @@ builder.Services.AddSwaggerGen(s =>
         {
             Version = "v1",
             Title = "Menu de Missões e Espaçonaves",
-            Description = "Api de cadastro de Espaçonaves e Missões que consome outra Api (SwapiDev) construída com arquitetura DDD e com Banco de Dados" +
-            "\n\n feito através de migrações pelo EntityFramework",
+            Description = "=> Api de cadastro de Espaçonaves e Missões construída com arquitetura DDD que consome outra Api (SwapiDev): " + 
+            "https://swapi.dev/ \n\n => Banco de Dados feito através de migrações pelo EntityFramework",
             TermsOfService = new Uri("http://www.linkedin.com/in/vini-fumagalli"),
             Contact = new OpenApiContact
             {
