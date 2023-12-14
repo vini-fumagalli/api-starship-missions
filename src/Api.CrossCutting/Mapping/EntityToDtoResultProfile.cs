@@ -14,6 +14,12 @@ public class EntityToDtoResultProfile : Profile
             dest.CreatedAt = FormatDateTime(src.CreatedAt);
             dest.UpdatedAt = FormatDateTime(src.UpdatedAt);
         });
+
+        CreateMap<MissionsEnitity, MissionsDtoResult>()
+        .AfterMap((src, dest) =>
+        {
+            dest.CreatedAt = FormatDateTime(src.CreatedAt);
+        });
     }
 
     public string? FormatDateTime(DateTime? source)
