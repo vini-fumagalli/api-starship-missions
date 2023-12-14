@@ -18,14 +18,14 @@ public class StarshipController : ControllerBase
 
     [HttpPost]
     [Route("Create")]
-    public async Task<ActionResult<ResponseEntity>> CreateStarship(List<string> models)
+    public async Task<ActionResult<ResponseEntity>> CreateStarship([FromQuery] List<string> models)
     {
         try
         {
             var response = await _service.CreateStarship(models);
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO CRIAR ESPAÇONAVE => ", ex);
@@ -42,7 +42,7 @@ public class StarshipController : ControllerBase
             var response = await _service.GetStarshipByName(name);
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
@@ -58,7 +58,7 @@ public class StarshipController : ControllerBase
             var response = await _service.GetStarshipByModel(model);
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
@@ -74,7 +74,7 @@ public class StarshipController : ControllerBase
             var response = await _service.GetStarshipByManufacturer(manufacturer);
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
@@ -90,7 +90,7 @@ public class StarshipController : ControllerBase
             var response = await _service.UpdateStarship(name, starship);
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
@@ -106,7 +106,7 @@ public class StarshipController : ControllerBase
             var response = await _service.DeleteStarship(name);
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
