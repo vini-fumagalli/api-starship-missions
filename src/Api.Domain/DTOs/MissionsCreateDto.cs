@@ -7,5 +7,4 @@ public class MissionsCreateDto
     public string? Date { get; set; }
     public string? Duration { get; set; }
     public int? Crew { get; set; }
-    public DateTime? CreatedAt { get; set; }
 }

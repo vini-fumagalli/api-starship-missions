@@ -24,6 +24,6 @@ public class EntityToDtoResultProfile : Profile
 
     public string? FormatDateTime(DateTime? source)
     {
-        return source?.ToString("dd/MM/yyyy hh:mm:ss");
+        return source?.ToString("dd/MM/yyyy HH:mm:ss");
     }
 }

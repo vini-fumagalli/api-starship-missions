@@ -54,7 +54,7 @@ public class MissionsService : IMissionsService
 
     public async Task<ResponseEntity> GetMissionsByStarship(string starshipName)
     {
-        starshipName.Replace(" ", ".").ToUpper();
+        starshipName = starshipName.Replace(" ", ".").ToUpper();
         var starshipMissionsDto = await _repository.GetMissionsByStarship(starshipName);
         
         var response = MapToStarshipMissionsDtoResult(starshipMissionsDto.Starship!, 

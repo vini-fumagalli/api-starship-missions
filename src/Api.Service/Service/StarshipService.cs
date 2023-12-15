@@ -31,16 +31,21 @@ public class StarshipService : IStarshipService
             {
                 if (model != null)
                 {
-                    string apiUrl = "https://swapi.dev/api/starships/?search=" + model;
+                    string apiUrl = "https://swapi.dev/api/starships/?search=" + Uri.EscapeDataString(model);
                     HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync(apiUrl);
 
                     if (httpResponseMessage.IsSuccessStatusCode)
                     {
                         var jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-                        var starshipCreateDto = JsonSerializer.Deserialize<StarshipCreateDto>(jsonResponse)!;
-                        var starshipEntity = _mapper.Map<StarshipEntity>(starshipCreateDto);
+                        var searchResponse = JsonSerializer.Deserialize<StarshipSearchResponseDto>(jsonResponse);
 
-                        starshipList.Add(starshipEntity);
+                        if(searchResponse!.Results!.Count > 0)
+                        {
+                            var starshipCreateDto = searchResponse!.Results![0];
+                            var starshipEntity = _mapper.Map<StarshipEntity>(starshipCreateDto);
+                            starshipList.Add(starshipEntity);
+                        }
+                        
                     }
                 }
             }
@@ -62,7 +67,7 @@ public class StarshipService : IStarshipService
 
     public async Task<ResponseEntity> DeleteStarship(string name)
     {
-        name.Replace(" ", ".").ToUpper();
+        name = name.Replace(" ", ".").ToUpper();
         var response = await _repository.DeleteStarship(name);
 
         return new ResponseEntity
@@ -74,7 +79,7 @@ public class StarshipService : IStarshipService
 
     public async Task<ResponseEntity> GetStarshipByManufacturer(string manufacturer)
     {
-        manufacturer.Replace(" ", ".").ToUpper();
+        manufacturer = manufacturer.Replace(" ", ".").ToUpper();
         var starship = await _repository.GetStarshipByManufacturer(manufacturer);
         var response = _mapper.Map<StarshipDtoResult>(starship);
 
@@ -87,7 +92,7 @@ public class StarshipService : IStarshipService
 
     public async Task<ResponseEntity> GetStarshipByModel(string model)
     {
-        model.Replace(" ", ".").ToUpper();
+        model = model.Replace(" ", ".").ToUpper();
         var starship = await _repository.GetStarshipByModel(model);
         var response = _mapper.Map<StarshipDtoResult>(starship);
 
@@ -100,7 +105,7 @@ public class StarshipService : IStarshipService
 
     public async Task<ResponseEntity> GetStarshipByName(string name)
     {
-        name.Replace(" ", ".").ToUpper();
+        name = name.Replace(" ", ".").ToUpper();
         var starship = await _repository.GetStarshipByName(name);
         var response = _mapper.Map<StarshipDtoResult>(starship);
 
