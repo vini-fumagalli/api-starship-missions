@@ -1,4 +1,5 @@
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.Missions;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ public class MissionsController : ControllerBase
             var response = await _service.GetMissions();
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER TODAS AS MISSÕES => ", ex);
@@ -41,7 +42,7 @@ public class MissionsController : ControllerBase
             var response = await _service.GetMissionsByStarship(starshipName);
             return Ok(response);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER TODAS AS MISSÕES => ", ex);
@@ -54,15 +55,15 @@ public class MissionsController : ControllerBase
     {
         try
         {
-            if(mission.StarshipName != null)
+            if (mission.StarshipName != null)
             {
                 var response = await _service.CreateMission(mission);
-                return Ok(response);    
+                return Ok(response);
             }
 
             return BadRequest();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
             throw new Exception("ERRO AO OBTER TODAS AS MISSÕES => ", ex);

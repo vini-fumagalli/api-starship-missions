@@ -1,4 +1,4 @@
-namespace Api.Domain.DTOs;
+namespace Api.Domain.DTOs.Missions;
 
 public class MissionsCreateDto
 {

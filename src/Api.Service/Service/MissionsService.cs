@@ -1,4 +1,7 @@
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.Missions;
+using Api.Domain.DTOs.Starship;
+using Api.Domain.DTOs.StarshipMissions;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Repositories;
 using Api.Domain.Interfaces.Services;
@@ -39,7 +42,7 @@ public class MissionsService : IMissionsService
         {
             var starshipMissionsDto = await _repository.GetMissionsByStarship(starship.Name!);
 
-            var missionsByStarship = MapToStarshipMissionsDtoResult(starshipMissionsDto.Starship!, 
+            var missionsByStarship = MapToStarshipMissionsDtoResult(starshipMissionsDto.Starship!,
                                                                     starshipMissionsDto.Missions!);
 
             starshipMissionsList.Add(missionsByStarship);
@@ -56,14 +59,14 @@ public class MissionsService : IMissionsService
     {
         starshipName = starshipName.Replace(" ", ".").ToUpper();
         var starshipMissionsDto = await _repository.GetMissionsByStarship(starshipName);
-        
-        var response = MapToStarshipMissionsDtoResult(starshipMissionsDto.Starship!, 
+
+        var response = MapToStarshipMissionsDtoResult(starshipMissionsDto.Starship!,
                                                       starshipMissionsDto.Missions!);
 
         return new ResponseEntity
         {
             Success = true,
-            Response = response 
+            Response = response
         };
     }
 

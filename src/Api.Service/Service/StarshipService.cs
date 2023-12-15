@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.Starship;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Repositories;
 using Api.Domain.Interfaces.Services;
@@ -39,26 +40,26 @@ public class StarshipService : IStarshipService
                         var jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
                         var searchResponse = JsonSerializer.Deserialize<StarshipSearchResponseDto>(jsonResponse);
 
-                        if(searchResponse!.Results!.Count > 0)
+                        if (searchResponse!.Results!.Count > 0)
                         {
                             var starshipCreateDto = searchResponse!.Results![0];
                             var starshipEntity = _mapper.Map<StarshipEntity>(starshipCreateDto);
                             starshipList.Add(starshipEntity);
                         }
-                        
+
                     }
                 }
             }
             var response = await _repository.CreateStarship(starshipList);
             var formattedResponse = _mapper.Map<List<StarshipDtoResult>>(response);
-            
+
             return new ResponseEntity
             {
                 Success = formattedResponse.Any(),
                 Response = formattedResponse
             };
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO CRIAR ESPAÇONAVES => ", ex);
         }

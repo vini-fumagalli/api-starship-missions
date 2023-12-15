@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Api.Domain.DTOs;
+namespace Api.Domain.DTOs.Starship;
 
 public class StarshipCreateDto
 {

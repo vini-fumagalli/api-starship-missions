@@ -1,4 +1,6 @@
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.Missions;
+using Api.Domain.DTOs.Starship;
 using Api.Domain.Entities;
 using AutoMapper;
 

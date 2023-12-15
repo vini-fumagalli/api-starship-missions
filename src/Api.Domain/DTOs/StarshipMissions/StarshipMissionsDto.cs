@@ -1,6 +1,6 @@
 using Api.Domain.Entities;
 
-namespace Api.Domain.DTOs;
+namespace Api.Domain.DTOs.StarshipMissions;
 
 public class StarshipMissionsDto
 {

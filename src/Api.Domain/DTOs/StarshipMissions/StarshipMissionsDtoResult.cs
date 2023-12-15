@@ -1,4 +1,7 @@
-namespace Api.Domain.DTOs;
+using Api.Domain.DTOs.Missions;
+using Api.Domain.DTOs.Starship;
+
+namespace Api.Domain.DTOs.StarshipMissions;
 
 public class StarshipMissionsDtoResult
 {

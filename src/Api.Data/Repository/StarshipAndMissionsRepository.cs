@@ -1,5 +1,6 @@
 using Api.Data.Context;
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.StarshipMissions;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -23,10 +24,10 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
     {
         try
         {
-            foreach(var starship in starships)
+            foreach (var starship in starships)
             {
                 var exists = await _dbStarship.AnyAsync(s => s.Name!.Equals(starship.Name));
-                if(!exists)
+                if (!exists)
                 {
                     await _dbStarship.AddAsync(starship);
                 }
@@ -34,7 +35,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
             await _context.SaveChangesAsync();
             return starships;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO CADASTRAR ESPAÇONAVE => ", ex);
         }
@@ -45,7 +46,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
         try
         {
             var starship = await _dbStarship.SingleOrDefaultAsync(s => s.Name!.Equals(name));
-            if(starship != null)
+            if (starship != null)
             {
                 _dbStarship.Remove(starship);
                 await _context.SaveChangesAsync();
@@ -53,7 +54,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
             }
             return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO EXCLUIR ESPAÇONAVE => ", ex);
         }
@@ -70,10 +71,10 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
                 Starship = starship,
                 Missions = missions
             };
-            
+
             return starshipMissions;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO OBTER AS MISSÕES POR ESPAÇONAVE => ", ex);
         }
@@ -87,7 +88,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
             await _context.SaveChangesAsync();
             return mission;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO CADASTRAR MISSÃO => ", ex);
         }
@@ -101,7 +102,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
                                             .SingleOrDefaultAsync(s => s.Manufacturer!.Equals(manufacturer));
             return starship;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
         }
@@ -115,7 +116,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
                                             .SingleOrDefaultAsync(s => s.Model!.Equals(model));
             return starship;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
         }
@@ -129,7 +130,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
                                             .SingleOrDefaultAsync(s => s.Name!.Equals(name));
             return starship;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
         }
@@ -141,7 +142,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
         {
             return await _dbStarship.AsNoTracking().ToListAsync();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO OBTER ESPAÇONAVES => ", ex);
         }
@@ -154,21 +155,21 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
             var starshipToUpdate = await _dbStarship
                                         .SingleOrDefaultAsync(s => s.Name!.Equals(starship.Name));
 
-            if(starshipToUpdate != null)
+            if (starshipToUpdate != null)
             {
                 starship.CreatedAt = starshipToUpdate.CreatedAt;
 
                 _dbStarship.Entry(starshipToUpdate).CurrentValues.SetValues(starship);
                 await _context.SaveChangesAsync();
-                return starship; 
+                return starship;
             }
             return null;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception("ERRO AO ATUALIZAR ESPAÇONAVE => ", ex);
         }
-        
-        
+
+
     }
 }

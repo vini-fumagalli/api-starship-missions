@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Api.Domain.DTOs.Starship;
 
 namespace Api.Domain.DTOs;
 
