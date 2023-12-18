@@ -23,8 +23,13 @@ public class StarshipController : ControllerBase
     {
         try
         {
-            var response = await _service.CreateStarship(models);
-            return Ok(response);
+            if(models.Count > 0)
+            {
+                var response = await _service.CreateStarship(models);
+                return Ok(response);
+            }
+
+            return BadRequest();    
         }
         catch (Exception ex)
         {
@@ -40,13 +45,18 @@ public class StarshipController : ControllerBase
     {
         try
         {
-            var response = await _service.GetStarshipByName(name);
-            return Ok(response);
+            if(name != null)
+            {
+                var response = await _service.GetStarshipByName(name);
+                return Ok(response);
+            }
+
+            return BadRequest();
         }
         catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO OBTER ESPAÇONAVE POR NOME => ", ex);
         }
     }
 
@@ -56,13 +66,18 @@ public class StarshipController : ControllerBase
     {
         try
         {
-            var response = await _service.GetStarshipByModel(model);
-            return Ok(response);
+           if(model != null)
+            {
+                var response = await _service.GetStarshipByModel(model);
+                return Ok(response);
+            }
+
+            return BadRequest();
         }
         catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO OBTER ESPAÇONAVE POR MODELO => ", ex);
         }
     }
 
@@ -72,13 +87,18 @@ public class StarshipController : ControllerBase
     {
         try
         {
-            var response = await _service.GetStarshipByManufacturer(manufacturer);
-            return Ok(response);
+            if(manufacturer != null)
+            {
+                var response = await _service.GetStarshipByManufacturer(manufacturer);
+                return Ok(response);
+            }
+
+            return BadRequest();
         }
         catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO OBTER ESPAÇONAVE POR FABRICANTE => ", ex);
         }
     }
 
@@ -88,13 +108,18 @@ public class StarshipController : ControllerBase
     {
         try
         {
-            var response = await _service.UpdateStarship(name, starship);
-            return Ok(response);
+            if(name != null)
+            {
+                var response = await _service.UpdateStarship(name, starship);
+                return Ok(response);
+            }
+
+            return BadRequest();
         }
         catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO ATUALIZAR ESPAÇONAVE => ", ex);
         }
     }
 
@@ -104,13 +129,18 @@ public class StarshipController : ControllerBase
     {
         try
         {
-            var response = await _service.DeleteStarship(name);
-            return Ok(response);
+            if(name != null)
+            {
+                var response = await _service.DeleteStarship(name);
+                return Ok(response);
+            }
+            
+            return BadRequest();
         }
         catch (Exception ex)
         {
             Serilog.Log.Error(ex.Message);
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO EXCLUIR ESPAÇONAVE => ", ex);
         }
     }
 
