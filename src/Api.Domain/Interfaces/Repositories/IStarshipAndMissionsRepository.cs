@@ -14,6 +14,6 @@ public interface IStarshipAndMissionsRepository
     Task<StarshipEntity?> GetStarshipByManufacturer(string manufacturer);
     Task<List<StarshipEntity>> CreateStarship(List<StarshipEntity> starships);
     Task<StarshipMissionsDto> GetMissionsByStarship(string starshipName);
-    Task<MissionsEnitity> CreateMission(MissionsEnitity mission);
+    Task<List<MissionsEnitity>> CreateMission(List<MissionsEnitity> missions);
 
 }

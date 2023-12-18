@@ -8,5 +8,5 @@ public interface IMissionsService
 {
     Task<ResponseEntity> GetMissions();
     Task<ResponseEntity> GetMissionsByStarship(string starshipName);
-    Task<ResponseEntity> CreateMission(MissionsCreateDto mission);
+    Task<ResponseEntity> CreateMission(List<string> starshipNames, MissionsCreateDto mission);
 }
