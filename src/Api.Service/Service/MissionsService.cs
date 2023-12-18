@@ -24,14 +24,15 @@ public class MissionsService : IMissionsService
     {
         var missionsList = new List<MissionsEnitity>();
 
-        foreach(var starshipName in starshipNames)
+        foreach (var starshipName in starshipNames)
         {
-            var existsStarship = await _repository.GetStarshipByName(starshipName.Replace(" ", ".").ToUpper());
-            if(existsStarship != null)
+            var formattedStarshipName = starshipName.Replace(" ", ".").ToUpper();
+            var existsStarship = await _repository.GetStarshipByName(formattedStarshipName);
+            if (existsStarship != null)
             {
                 var missionsEntity = _mapper.Map<MissionsEnitity>(mission);
-                missionsEntity.StarshipName = starshipName.Replace(" ", ".").ToUpper();
-                missionsList.Add(missionsEntity);    
+                missionsEntity.StarshipName = formattedStarshipName;
+                missionsList.Add(missionsEntity);
             }
         }
 
