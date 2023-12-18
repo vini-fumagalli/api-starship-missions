@@ -4,16 +4,19 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Configurando Mapping
+//Configuração de Mapping
 builder.Services.AddAutoMapper(typeof(DtoToEntityProfile));
 builder.Services.AddAutoMapper(typeof(EntityToDtoResultProfile));
-// Add services to the container.
-//Injeção de Dependência
+
+//Configuração de Injeção de Dependência
 ConfigureService.ConfigureDependenciesService(builder.Services);
 ConfigureRepository.ConfigureDependenciesRepository(builder.Services, "DB_CONNECTION_STARSHIP");
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+//Adição de informações do autor
 builder.Services.AddSwaggerGen(s =>
         s.SwaggerDoc("v1", new OpenApiInfo
         {
