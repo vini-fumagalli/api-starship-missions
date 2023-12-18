@@ -11,16 +11,14 @@ namespace Api.Service.Services;
 
 public class StarshipService : IStarshipService
 {
+    private static readonly HttpClient _httpClient = new HttpClient();
     private readonly IStarshipAndMissionsRepository _repository;
-    private readonly HttpClient _httpClient;
     private readonly IMapper _mapper;
 
     public StarshipService(IStarshipAndMissionsRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
-        _httpClient = new HttpClient();
-
     }
     public async Task<ResponseEntity> CreateStarship(List<string> starshipModels)
     {
