@@ -22,7 +22,6 @@ public class DtoToEntityProfile : Profile
         .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow.ToLocalTime()));
 
         CreateMap<MissionsCreateDto, MissionsEnitity>()
-        .ForMember(dest => dest.StarshipName, opt => opt.MapFrom(src => src.StarshipName!.Replace(" ", ".").ToUpper()))
         .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow.ToLocalTime()));
     }
 }
