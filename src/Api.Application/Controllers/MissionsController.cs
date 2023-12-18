@@ -17,6 +17,49 @@ public class MissionsController : ControllerBase
         _service = service;
     }
 
+    [HttpPost]
+    [Route("Create")]
+    public async Task<ActionResult<ResponseEntity>> CreateMission([FromQuery] List<string> starshipNames, MissionsCreateDto mission)
+    {
+        try
+        {
+            if (starshipNames.Count > 0)
+            {
+                var response = await _service.CreateMission(starshipNames, mission);
+                return Ok(response);
+            }
+
+            return BadRequest();
+        }
+        catch (Exception ex)
+        {
+            Serilog.Log.Error(ex.Message);
+            throw new Exception("ERRO AO CADASTRAR MISSÕES => ", ex);
+        }
+    }
+
+    [HttpGet]
+    [Route("GetByStarship/{starshipName}")]
+    public async Task<ActionResult<ResponseEntity>> GetMissionsByStarship(string starshipName)
+    {
+        try
+        {
+            if(starshipName != null)
+            {
+                var response = await _service.GetMissionsByStarship(starshipName);
+                return Ok(response);
+            }
+
+            return BadRequest();
+            
+        }
+        catch (Exception ex)
+        {
+            Serilog.Log.Error(ex.Message);
+            throw new Exception("ERRO AO OBTER MISSÕES POR ESPAÇONAVE => ", ex);
+        }
+    }
+
     [HttpGet]
     [Route("GetAll")]
     public async Task<ActionResult<ResponseEntity>> GetMissions()
@@ -33,42 +76,7 @@ public class MissionsController : ControllerBase
         }
     }
 
-    [HttpGet]
-    [Route("GetByStarship/{starshipName}")]
-    public async Task<ActionResult<ResponseEntity>> GetMissionsByStarship(string starshipName)
-    {
-        try
-        {
-            var response = await _service.GetMissionsByStarship(starshipName);
-            return Ok(response);
-        }
-        catch (Exception ex)
-        {
-            Serilog.Log.Error(ex.Message);
-            throw new Exception("ERRO AO OBTER TODAS AS MISSÕES => ", ex);
-        }
-    }
 
-    [HttpPost]
-    [Route("Create")]
-    public async Task<ActionResult<ResponseEntity>> CreateMission(MissionsCreateDto mission)
-    {
-        try
-        {
-            if (mission.StarshipName != null)
-            {
-                var response = await _service.CreateMission(mission);
-                return Ok(response);
-            }
-
-            return BadRequest();
-        }
-        catch (Exception ex)
-        {
-            Serilog.Log.Error(ex.Message);
-            throw new Exception("ERRO AO OBTER TODAS AS MISSÕES => ", ex);
-        }
-    }
 
 
 }

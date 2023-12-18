@@ -20,16 +20,28 @@ public class MissionsService : IMissionsService
         _mapper = mapper;
     }
 
-    public async Task<ResponseEntity> CreateMission(MissionsCreateDto mission)
+    public async Task<ResponseEntity> CreateMission(List<string> starshipNames, MissionsCreateDto mission)
     {
-        var missionEnitity = _mapper.Map<MissionsEnitity>(mission);
-        var missionToCreate = await _repository.CreateMission(missionEnitity);
-        var response = _mapper.Map<MissionsDtoResult>(missionToCreate);
+        var missionsList = new List<MissionsEnitity>();
+
+        foreach(var starshipName in starshipNames)
+        {
+            var existsStarship = await _repository.GetStarshipByName(starshipName.Replace(" ", ".").ToUpper());
+            if(existsStarship != null)
+            {
+                var missionsEntity = _mapper.Map<MissionsEnitity>(mission);
+                missionsEntity.StarshipName = starshipName.Replace(" ", ".").ToUpper();
+                missionsList.Add(missionsEntity);    
+            }
+        }
+
+        var response = await _repository.CreateMission(missionsList);
+        var formattedResponse = _mapper.Map<List<MissionsDtoResult>>(response);
 
         return new ResponseEntity
         {
-            Success = true,
-            Response = response
+            Success = formattedResponse.Any(),
+            Response = formattedResponse
         };
     }
 
