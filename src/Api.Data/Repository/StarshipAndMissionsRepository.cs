@@ -80,13 +80,16 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
         }
     }
 
-    public async Task<MissionsEnitity> CreateMission(MissionsEnitity mission)
+    public async Task<List<MissionsEnitity>> CreateMission(List<MissionsEnitity> missions)
     {
         try
         {
-            await _dbMissions.AddAsync(mission);
-            await _context.SaveChangesAsync();
-            return mission;
+            foreach(var mission in missions)
+            {
+                await _dbMissions.AddAsync(mission);    
+            }
+             await _context.SaveChangesAsync();
+             return missions;
         }
         catch (Exception ex)
         {
@@ -104,7 +107,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
         }
         catch (Exception ex)
         {
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO OBTER ESPAÇONAVE POR FABRICANTE => ", ex);
         }
     }
 
@@ -118,7 +121,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
         }
         catch (Exception ex)
         {
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO OBTER ESPAÇONAVE POR MODELO => ", ex);
         }
     }
 
@@ -132,7 +135,7 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
         }
         catch (Exception ex)
         {
-            throw new Exception("ERRO AO OBTER ESPAÇONAVE => ", ex);
+            throw new Exception("ERRO AO OBTER ESPAÇONAVE POR NOME => ", ex);
         }
     }
 
