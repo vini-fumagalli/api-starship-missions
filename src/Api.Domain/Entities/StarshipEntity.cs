@@ -5,6 +5,7 @@ namespace Api.Domain.Entities;
 
 public class StarshipEntity
 {
+    //Name é a primary key
     [Key]
     public string? Name { get; set; }
     public string? Model { get; set; }

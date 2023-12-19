@@ -5,6 +5,8 @@ namespace Api.Domain.Entities;
 
 public class MissionsEnitity
 {
+    //Id é uma primary key que é automaticamente 
+    //gerada pelo banco de dados
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
