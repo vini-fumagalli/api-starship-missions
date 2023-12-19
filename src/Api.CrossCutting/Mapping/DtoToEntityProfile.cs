@@ -6,6 +6,9 @@ using AutoMapper;
 
 namespace Api.CrossCutting.Mapping;
 
+//classe que contém construtor que implementa 
+//Mapping de DTO(Data Transfer Object) para Entity
+//com suas respectivas regras de negócio
 public class DtoToEntityProfile : Profile
 {
     public DtoToEntityProfile()

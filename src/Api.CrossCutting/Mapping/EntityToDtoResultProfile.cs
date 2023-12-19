@@ -6,6 +6,9 @@ using AutoMapper;
 
 namespace Api.CrossCutting.Mapping;
 
+//classe que contém construtor que implementa 
+//Mapping de Entity para DTOResult (DTO que será exibido ao usuário)
+//com suas respectivas regras de negócio
 public class EntityToDtoResultProfile : Profile
 {
     public EntityToDtoResultProfile()
@@ -24,6 +27,8 @@ public class EntityToDtoResultProfile : Profile
         });
     }
 
+    //método para formatar os atributos DateTime para 
+    //o formato dd/MM/yyyy HH:mm:ss
     public string? FormatDateTime(DateTime? source)
     {
         return source?.ToString("dd/MM/yyyy HH:mm:ss");
