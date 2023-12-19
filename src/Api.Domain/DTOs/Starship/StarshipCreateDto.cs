@@ -2,6 +2,10 @@ using System.Text.Json.Serialization;
 
 namespace Api.Domain.DTOs.Starship;
 
+//DTO(Data Transfer Object) para trasnferir dados de 
+//Starship quando usar o Create. Cada atributo tem uma 
+//JsonPropertyName para indicar onde cada atributo do JSON
+//da Api SwapiDev deve alocar seus dados
 public class StarshipCreateDto
 {
     [JsonPropertyName("name")]

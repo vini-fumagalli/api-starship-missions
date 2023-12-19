@@ -1,5 +1,8 @@
 namespace Api.Domain.DTOs.Starship;
 
+
+//DTO(Data Transfer Object) para exibir no corpo do
+//JSON para o usuário
 public class StarshipDtoResult
 {
     public string? Name { get; set; }

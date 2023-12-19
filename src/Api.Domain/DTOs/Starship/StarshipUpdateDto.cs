@@ -1,5 +1,9 @@
 namespace Api.Domain.DTOs.Starship;
 
+
+//DTO(Data Transfer Object) para realizar 
+//Update de Starship. A DTO não possui o nome
+//pois ele é pego separadamente na url da requisição
 public class StarshipUpdateDto
 {
     public string? Model { get; set; }
