@@ -4,6 +4,8 @@ using Api.Domain.Entities;
 
 namespace Api.Domain.Interfaces.Services;
 
+//Interface do contrato de métodos que serão implementados
+//por StarshipService
 public interface IStarshipService
 {
     Task<ResponseEntity> CreateStarship(List<string> starshipModels);

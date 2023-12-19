@@ -4,6 +4,8 @@ using Api.Domain.Entities;
 
 namespace Api.Domain.Interfaces.Repositories;
 
+//Interface do contrato de métodos que serão implementados
+//por StarshipAndMissionsRepository
 public interface IStarshipAndMissionsRepository
 {
     Task<List<StarshipEntity>> GetStarships();
