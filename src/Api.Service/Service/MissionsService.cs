@@ -9,6 +9,8 @@ using AutoMapper;
 
 namespace Api.Service.Services;
 
+//Camada de Service destinada a implementar as regras de 
+//negócio da aplicação antes de chamar o Repository
 public class MissionsService : IMissionsService
 {
     //declara variável do tipo da interface de repositório
