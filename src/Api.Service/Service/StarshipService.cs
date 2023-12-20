@@ -47,7 +47,7 @@ public class StarshipService : IStarshipService
                 {
                     //defino uma urlbase para a busca das infos de cada espaçonave com
                     //base no model analisado pelo loop  
-                    string apiUrl = "https://swapi.dev/api/starships/?search=" + Uri.EscapeDataString(model);
+                    var apiUrl = "https://swapi.dev/api/starships/?search=" + Uri.EscapeDataString(model);
                     //uso GetAsync() para fazer uma requisição naquela Uri
                     HttpResponseMessage httpResponseMessage = await _httpClient.GetAsync(apiUrl);
                     //verifico se obtive sucesso
