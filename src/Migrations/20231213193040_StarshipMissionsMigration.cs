@@ -3,13 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+//classe criada automaticamente pelo
+//EntityFramework através de Migrations
 namespace Api.Migrations
 {
     /// <inheritdoc />
     public partial class StarshipMissionsMigration : Migration
     {
         /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
+        protected override void Up(MigrationBuilder migrationBuilder) 
         {
             migrationBuilder.CreateTable(
                 name: "MISSIONS_STARSHIP",

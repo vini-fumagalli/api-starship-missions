@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
+//classe criada automaticamente pelo
+//EntityFramework através de Migrations
 namespace Api.Migrations
 {
     [DbContext(typeof(MyContext))]
