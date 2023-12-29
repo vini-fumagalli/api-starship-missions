@@ -93,6 +93,12 @@ Exemplo de cadastro de espaçonave através do modelo 👇
 
 ![SwaggerGif](src/Images/swaggerCreate.gif)
 
+## 🙋 Autor
+
+- Vinícius Fumagalli
+- Estagiário de back-end com .NET
+- Cursando 4º período de Ciência da Computação
+
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/vini-fumagalli)
 
