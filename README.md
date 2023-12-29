@@ -5,6 +5,13 @@ API na qual o usuário, para cadastrar uma ou mais espaçonaves de uma vez, info
 
 
 
+## 🌐 Stack Utilizada
+
+**API:** C# - .NET Framework 7.0 - EntityFramework - Swagger (Documentação) 
+
+**Banco de Dados:** SQLServer
+
+
 ## 🧠 Conhecimentos Adquiridos 
 
 - Consumo de outra API
@@ -67,6 +74,24 @@ Inicie a aplicação
 O Swagger será renderizado e disponibilizará o uso de cada endpoint da API
 
 ![Swagger](src/Images/swaggerPic.png)
+
+Possíveis modelos a serem inseridos pelo usuário e buscados na API Swapi.Dev 👇
+
+```bash
+- CR90 corvette
+- Imperial I-class Star Destroyer
+- Sentinel-class landing craft
+- DS-1 Orbital Battle Station
+- YT-1300 light freighter
+- BTL Y-wing
+- T-65 X-wing
+- Twin Ion Engine Advanced x1
+- Executor-class star dreadnought
+- GR-75 medium transport
+```
+Exemplo de cadastro de espaçonave através do modelo 👇
+
+![SwaggerGif](src/Images/swaggerCreate.gif)
 
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/vini-fumagalli)
