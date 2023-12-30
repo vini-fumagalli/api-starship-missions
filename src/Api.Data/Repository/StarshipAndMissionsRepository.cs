@@ -38,6 +38,9 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
     {
         try
         {
+            //instancio uma lista de StarshipEntity para retornar
+            //somente as naves adicionadas no BD
+            var addedStarships = new List<StarshipEntity>();
             //loop para verificar a existência de cada
             //espaçonave no BD e, posteriormente, adicioná-la 
             //ou não 
@@ -47,12 +50,13 @@ public class StarshipAndMissionsRepository : IStarshipAndMissionsRepository
                 if (!exists)
                 {
                     await _dbStarship.AddAsync(starship);
+                    addedStarships.Add(starship);
                 }
             }
             //após o loop, salva as alterações e 
-            //retorna a(s) espaçonave(s) 
+            //retorna a(s) espaçonave(s) adicionada(s)
             await _context.SaveChangesAsync();
-            return starships;
+            return addedStarships;
         }
         catch (Exception ex)
         {
