@@ -108,12 +108,11 @@ public class StarshipService : IStarshipService
         //no banco de dados e envio ao repositório 
         name = name.Replace(" ", ".").ToUpper();
         var response = await _repository.DeleteStarship(name);
-
         //por fim, devolvo uma RespostaEntity
         //para a controller
         return new ResponseEntity
         {
-            Success = true,
+            Success = response,
             Response = response
         };
     }
@@ -131,7 +130,7 @@ public class StarshipService : IStarshipService
         //para a controller
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }
@@ -149,7 +148,7 @@ public class StarshipService : IStarshipService
         //para a controller
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }
@@ -167,7 +166,7 @@ public class StarshipService : IStarshipService
         //para a controller
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }
@@ -189,7 +188,7 @@ public class StarshipService : IStarshipService
         //para a controller
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }

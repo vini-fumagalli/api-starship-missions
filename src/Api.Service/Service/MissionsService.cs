@@ -117,7 +117,7 @@ public class MissionsService : IMissionsService
         //devolve uma ResponseEntity para a Controller
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }
