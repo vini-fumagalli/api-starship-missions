@@ -1,6 +1,6 @@
 
 # 🚀 API de Gerenciamento de Frota de Espaçonaves do Universo Star Wars 
-API na qual o usuário, para cadastrar uma ou mais espaçonaves de uma vez, informa o modelo e todo o resto das informações dessa(s) espaçonave(s) é obtida através da API Swapi.Dev. Ademais, é possível editar e remover cada nave espacial, além de consultá-las por nome, modelo ou fabricante. Há também o registro de missões realizadas por cada espaçonave no qual é possível cadastrar mais de uma nave espacial por missão e consultar todas as missões realizadas por espaçonave. 
+API na qual o usuário, para cadastrar uma ou mais espaçonaves de uma vez, informa o modelo e todo o resto das informações dessa(s) espaçonave(s) é obtida através da API [Swapi.Dev](https://swapi.dev/). Ademais, é possível editar e remover cada nave espacial, além de consultá-las por nome, modelo ou fabricante. Há também o registro de missões realizadas por cada espaçonave no qual é possível cadastrar mais de uma nave espacial por missão e consultar todas as missões realizadas por espaçonave. 
 
 
 
